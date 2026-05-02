@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord - Talk, Chat, Hang Out</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="app">
+        <!-- Server Sidebar -->
+        <div class="servers">
+            <div class="server-icon home">D</div>
+            <div class="server-divider"></div>
+            <div class="server-icon">🎮</div>
+            <div class="server-icon">🎵</div>
+            <div class="server-icon">⚽</div>
+            <div class="server-icon">🎨</div>
+            <div class="server-icon add">+</div>
+        </div>
+
+        <!-- Channel Sidebar -->
+        <div class="channels">
+            <div class="server-name">
+                <span class="dropdown">▼</span>
+                My Server
+                <span class="online-badge">●</span>
+            </div>
+
+            <div class="channel-category">
+                <span>▼</span> TEXT CHANNELS
+            </div>
+            <div class="channel active">
+                <span class="hash">#</span> general
+            </div>
+            <div class="channel">
+                <span class="hash">#</span> announcements
+            </div>
+            <div class="channel">
+                <span class="hash">#</span> rules
+            </div>
+            <div class="channel">
+                <span class="hash">#</span> off-topic
+            </div>
+
+            <div class="channel-category">
+                <span>▶</span> VOICE CHANNELS
+            </div>
+            <div class="channel voice">
+                <span>🔊</span> Lounge
+            </div>
+            <div class="channel voice">
+                <span>🔊</span> Gaming
+            </div>
+            <div class="channel voice">
+                <span>🔊</span> Music
+            </div>
+
+            <div class="user-panel">
+                <div class="user-card">
+                    <div class="avatar"></div>
+                    <div class="user-info">
+                        <div class="username">Username</div>
+                        <div class="user-id">#1234</div>
+                    </div>
+                </div>
+                <div class="user-controls">
+                    <button title="Mute">🎤</button>
+                    <button title="Deafen">🎧</button>
+                    <button title="Settings">⚙️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="chat">
+            <div class="chat-header">
+                <span class="hash">#</span>
+                <span class="channel-title">general</span>
+                <div class="chat-topic">General discussion about anything!</div>
+                <div class="chat-tabs">
+                    <span>📌 Pins</span>
+                    <span>👥 Members</span>
+                    <span>⚙️ Settings</span>
+                </div>
+            </div>
+
+            <div class="messages">
+                <div class="welcome">
+                    <div class="welcome-icon">👋</div>
+                    <div class="welcome-title">Welcome to #general!</div>
+                    <div class="welcome-text">This is the start of the #general channel.</div>
+                </div>
+
+                <div class="message">
+                    <div class="avatar admin"></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="author">AdminUser</span>
+                            <span class="badge">Admin</span>
+                            <span class="time">Today at 10:30 AM</span>
+                        </div>
+                        <div class="message-text">Welcome everyone to the server! Feel free to introduce yourself!</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="avatar user"></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="author">User123</span>
+                            <span class="time">Today at 10:32 AM</span>
+                        </div>
+                        <div class="message-text">Thanks for having me! Excited to be here! 🎉</div>
+                    </div>
+                </div>
+
+                <div class="message">
+                    <div class="avatar gamer"></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="author">GamerPro</span>
+                            <span class="time">Today at 10:35 AM</span>
+                        </div>
+                        <div class="message-text">Anyone up for some gaming later? 👾</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-box">
+                    <span class="plus">+</span>
+                    <input type="text" id="messageInput" placeholder="Message #general"
+                        onkeypress="handleMessage(event)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Members Sidebar -->
+        <div class="members">
+            <div class="members-title">ONLINE — 3</div>
+
+            <div class="member-group">
+                <div class="role">ADMIN</div>
+                <div class="member">
+                    <div class="avatar admin"></div>
+                    <div class="member-info">
+                        <span class="name">AdminUser</span>
+                        <span class="status">Playing Discord</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-group">
+                <div class="role">MODERATOR</div>
+                <div class="member">
+                    <div class="avatar user"></div>
+                    <div class="member-info">
+                        <span class="name">User123</span>
+                        <span class="status">Online</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-group">
+                <div class="role">MEMBER</div>
+                <div class="member">
+                    <div class="avatar gamer"></div>
+                    <div class="member-info">
+                        <span class="name">GamerPro</span>
+                        <span class="status">Listening to Music</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function handleMessage(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById('messageInput');
+                const text = input.value.trim();
+
+                if (text) {
+                    const messages = document.querySelector('.messages');
+
+                    // Get current time
+                    const now = new Date();
+                    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    // Create new message element
+                    const messageEl = document.createElement('div');
+                    messageEl.className = 'message';
+                    messageEl.innerHTML = `
+                        <div class="avatar"></div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="author">You</span>
+                                <span class="time">Today at ${time}</span>
+                            </div>
+                            <div class="message-text">${text}</div>
+                        </div>
+                    `;
+
+                    messages.appendChild(messageEl);
+                    input.value = '';
+                    messages.scrollTop = messages.scrollHeight;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
