@@ -13,6 +13,9 @@
 
 <body>
     <div class="app">
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" onclick="toggleChannels()">☰</button>
+
         <!-- Server Sidebar -->
         <div class="servers">
             <div class="server-icon home">D</div>
@@ -211,6 +214,10 @@
                     messages.scrollTop = messages.scrollHeight;
                 }
             }
+        }
+
+        function toggleChannels() {
+            document.querySelector('.channels').classList.toggle('open');
         }
     </script>
 </body>

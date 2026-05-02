@@ -17,6 +17,7 @@ body {
     height: 100vh;
 }
 
+/* Server Sidebar */
 .servers {
     width: 72px;
     background-color: #1e1f22;
@@ -25,6 +26,7 @@ body {
     align-items: center;
     padding: 12px 0;
     gap: 8px;
+    flex-shrink: 0;
 }
 
 .server-icon {
@@ -61,11 +63,13 @@ body {
     margin: 4px 0;
 }
 
+/* Channel Sidebar */
 .channels {
     width: 240px;
     background-color: #2b2d31;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
 .server-name {
@@ -126,6 +130,7 @@ body {
     color: #949ba4;
 }
 
+/* User Panel */
 .user-panel {
     margin-top: auto;
     padding: 8px;
@@ -146,6 +151,7 @@ body {
     height: 32px;
     border-radius: 50%;
     background-color: #5865f2;
+    flex-shrink: 0;
 }
 
 .avatar.admin {
@@ -163,11 +169,15 @@ body {
 .user-info {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .username {
     font-weight: bold;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user-id {
@@ -191,11 +201,13 @@ body {
     font-size: 16px;
 }
 
+/* Main Chat Area */
 .chat {
     flex: 1;
     background-color: #313338;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .chat-header {
@@ -205,10 +217,14 @@ body {
     align-items: center;
     gap: 8px;
     border-bottom: 1px solid #3f4047;
+    flex-shrink: 0;
 }
 
 .channel-title {
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chat-topic {
@@ -216,6 +232,9 @@ body {
     font-size: 14px;
     padding-left: 16px;
     border-left: 1px solid #3f4047;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chat-tabs {
@@ -225,12 +244,14 @@ body {
     color: #949ba4;
     font-size: 14px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .messages {
     flex: 1;
     padding: 20px 16px;
     overflow-y: auto;
+    min-height: 0;
 }
 
 .welcome {
@@ -260,6 +281,7 @@ body {
 
 .message-content {
     flex: 1;
+    min-width: 0;
 }
 
 .message-header {
@@ -267,6 +289,7 @@ body {
     align-items: center;
     gap: 8px;
     margin-bottom: 4px;
+    flex-wrap: wrap;
 }
 
 .author {
@@ -290,10 +313,13 @@ body {
 .message-text {
     color: #dcddde;
     line-height: 1.4;
+    word-wrap: break-word;
 }
 
+/* Input Area */
 .input-area {
     padding: 0 16px 24px 16px;
+    flex-shrink: 0;
 }
 
 .input-box {
@@ -316,6 +342,7 @@ body {
     font-size: 18px;
     margin-right: 12px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .input-box input {
@@ -326,17 +353,20 @@ body {
     font-size: 15px;
     padding: 17px 0;
     outline: none;
+    min-width: 0;
 }
 
 .input-box input::placeholder {
     color: #949ba4;
 }
 
+/* Members Sidebar */
 .members {
     width: 240px;
     background-color: #2b2d31;
     padding: 16px 8px;
     overflow-y: auto;
+    flex-shrink: 0;
 }
 
 .members-title {
@@ -376,23 +406,32 @@ body {
 .member .avatar {
     width: 32px;
     height: 32px;
+    flex-shrink: 0;
 }
 
 .member-info {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .member-info .name {
     font-size: 15px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .member-info .status {
     font-size: 12px;
     color: #949ba4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -405,4 +444,213 @@ body {
 ::-webkit-scrollbar-thumb {
     background-color: #1a1b1e;
     border-radius: 4px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .members {
+        display: none;
+    }
+    
+    .chat-topic {
+        display: none;
+    }
+    
+    .chat-tabs {
+        display: none;
+    }
+}
+
+/* Mobile Landscape (480px - 768px) */
+@media screen and (max-width: 768px) {
+    .servers {
+        width: 52px;
+    }
+    
+    .server-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .channels {
+        width: 200px;
+    }
+    
+    .members {
+        display: none;
+    }
+    
+    .welcome-title {
+        font-size: 24px;
+    }
+    
+    .message {
+        gap: 12px;
+    }
+    
+    .avatar {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .author {
+        font-size: 14px;
+    }
+}
+
+/* Mobile Portrait (320px - 480px) */
+@media screen and (max-width: 480px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .servers {
+        width: 48px;
+        padding: 8px 0;
+        gap: 4px;
+    }
+    
+    .server-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .server-icon.add {
+        font-size: 22px;
+    }
+    
+    .server-divider {
+        width: 24px;
+        margin: 2px 0;
+    }
+    
+    .channels {
+        width: 100%;
+        position: fixed;
+        left: 48px;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
+    }
+    
+    .channels.open {
+        transform: translateX(0);
+    }
+    
+    .chat {
+        margin-left: 48px;
+    }
+    
+    .chat-header {
+        padding: 0 12px;
+        gap: 4px;
+    }
+    
+    .welcome-title {
+        font-size: 20px;
+    }
+    
+    .welcome-text {
+        font-size: 14px;
+    }
+    
+    .message {
+        gap: 8px;
+    }
+    
+    .message-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+    
+    .time {
+        font-size: 10px;
+    }
+    
+    .input-area {
+        padding: 0 12px 12px 12px;
+    }
+    
+    .input-box {
+        padding: 0 12px;
+    }
+    
+    .input-box input {
+        font-size: 14px;
+        padding: 14px 0;
+    }
+    
+    .plus {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+        margin-right: 8px;
+    }
+    
+    .user-panel {
+        padding: 4px;
+    }
+    
+    .user-controls {
+        margin-top: 4px;
+    }
+    
+    .user-controls button {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 200;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: #5865f2;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Very Small Devices (below 320px) */
+@media screen and (max-width: 320px) {
+    .servers {
+        width: 40px;
+    }
+    
+    .server-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+    
+    .chat {
+        margin-left: 40px;
+    }
+    
+    .channels {
+        left: 40px;
+    }
+    
+    .welcome-title {
+        font-size: 18px;
+    }
+    
+    .message-text {
+        font-size: 13px;
+    }
 }
